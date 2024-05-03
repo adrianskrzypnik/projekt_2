@@ -27,4 +27,8 @@ int main() {
     std::cout << "Element o największym priorytecie po modyfikacji klucza: " << pq.findMax() << std::endl;
 
     return 0;
+
+
+
+    dasnjkdahjdgyuasfasjfjsamfk
 }
