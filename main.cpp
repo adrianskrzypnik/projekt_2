@@ -3,7 +3,7 @@
 
 int main() {
     LinkedListPriorityQueue pq;
-
+//KOMENTARZ
     // Dodajemy elementy do kolejki priorytetowej
     pq.insert(3, 3);
     pq.insert(2, 1);
