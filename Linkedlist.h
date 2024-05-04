@@ -46,8 +46,21 @@ public:
 
     int findMax() {
         if (head == nullptr) throw std::runtime_error("Queue is empty");
-        return head->element;
+
+        Node* temp = head;
+        int maxPriority = temp->priority;
+
+        while (temp != nullptr) {
+            if (temp->priority > maxPriority) {
+                maxPriority = temp->priority;
+            }
+            temp = temp->next;
+        }
+
+        return maxPriority;
     }
+
+
 
     void modifyKey(int e, int p) {
         Node* start = head;
@@ -69,6 +82,14 @@ public:
             start = start->next;
         }
         return size;
+    }
+
+    void clear() {
+        while (head != nullptr) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
     }
 };
 
