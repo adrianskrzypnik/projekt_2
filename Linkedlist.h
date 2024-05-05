@@ -44,6 +44,7 @@ public:
         return maxElement;
     }
 
+    //popraw aby zwracało caly element a nie tylko priotytet
     int findMax() {
         if (head == nullptr) throw std::runtime_error("Queue is empty");
 
@@ -62,16 +63,16 @@ public:
 
 
 
-    void modifyKey(int e, int p) {
+    int modifyKey(int e, int p) {
         Node* start = head;
         while (start != nullptr) {
             if (start->element == e) {
                 start->priority = p;
-                return;
+                return 0;
             }
             start = start->next;
         }
-        throw std::runtime_error("Element not found");
+        return -1;
     }
 
     int returnSize() {

@@ -6,10 +6,10 @@ int main() {
     LinkedListPriorityQueue pq;
 
     Test test(0);
-    int x = test.linkedListInsert(pq, 10);
+    long long x = test.linkedListReturnSize(pq, 30000);
 
 
-    std::cout<<"new "<<x <<std::endl;
+    std::cout<<"uśrednioy wynik "<<x/48 <<"\nwynik dla 48 pomiarów "<< x <<std::endl;
 
 
 
@@ -22,6 +22,10 @@ int main() {
 //    pq.insert(6, 2);
 //    pq.insert(4, 1);
 //    pq.insert(45, 3);
+//
+//
+//
+//    pq.modifyKey( 5,2);
 //
 //    std::cout << "Rozmiar kolejki: " << pq.returnSize() << std::endl;
 //
