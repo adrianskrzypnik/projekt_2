@@ -11,8 +11,9 @@ public:
     void insert(int val, int priority);
     pair<int, int> extract_max();
     pair<int, int> find_max();
-    void modify_key(int val, int new_priority);
+    int modify_key(int val, int new_priority);
     int return_size();
+    void clear();
 
 private:
     vector<pair<int, int>> heap;

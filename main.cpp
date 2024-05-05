@@ -3,13 +3,13 @@
 #include "tests.h"
 #include "priority_queue.h"
 int main() {
-    LinkedListPriorityQueue pq;
-
-    Test test(0);
-    long long x = test.linkedListReturnSize(pq, 30000);
-
-
-    std::cout<<"uśrednioy wynik "<<x/48 <<"\nwynik dla 48 pomiarów "<< x <<std::endl;
+//    LinkedListPriorityQueue pq;
+//
+//    Test test(0);
+//    long long x = test.linkedListReturnSize(pq, 30000);
+//
+//
+//    std::cout<<"uśrednioy wynik "<<x/48 <<"\nwynik dla 48 pomiarów "<< x <<std::endl;
 
 
 
@@ -54,6 +54,16 @@ int main() {
 //    pq1.insert(1, 3);
 //    pq1.insert(9, 2);
 //    pq1.insert(5, 3);
+//
+//    int size = pq1.return_size();
+//    std::cout << "Rozmiar: " << size << std::endl;
+//
+//    pq1.clear();
+//
+//    int size1 = pq1.return_size();
+//    std::cout << "Rozmiar: " << size1 << std::endl;
+
+
 //
 //    // usuwanie i zwracanie elementu o największym priorytecie
 //    std::pair<int, int> maxElement = pq1.extract_max();

@@ -20,7 +20,7 @@ std::pair<int, int> PriorityQueue::find_max() {
     return heap.front();
 }
 
-void PriorityQueue::modify_key(int val, int new_priority) {
+int PriorityQueue::modify_key(int val, int new_priority) {
     for (size_t i = 0; i < heap.size(); ++i) {
         if (heap[i].first == val) {
             int old_priority = heap[i].second;
@@ -29,9 +29,10 @@ void PriorityQueue::modify_key(int val, int new_priority) {
                 upheap(i);
             else
                 downheap(i);
-            return;
+            return 0;//zwraca 0 jak znajdzie i zamieni
         }
     }
+    return -1; //zwraca -1 jak nie znajdzie elementu, potrzebne do testów
 }
 
 int PriorityQueue::return_size() {
@@ -71,4 +72,8 @@ void PriorityQueue::upheap(int i) {
 
 void PriorityQueue::downheap(int i) {
     heapify(i);
+}
+
+void PriorityQueue::clear() {
+    heap.clear();
 }
