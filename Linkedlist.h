@@ -50,7 +50,6 @@ public:
 
         Node* temp = head;
         int maxPriority = temp->priority;
-
         while (temp != nullptr) {
             if (temp->priority > maxPriority) {
                 maxPriority = temp->priority;
