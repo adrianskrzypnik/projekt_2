@@ -2,7 +2,11 @@
 #include "Linkedlist.h"
 #include "tests.h"
 #include "priority_queue.h"
+
 int main() {
+
+    void LinkedList();
+    void HeapStructure();
 //    LinkedListPriorityQueue pq;
 //
 //    Test test(0);
@@ -81,4 +85,143 @@ int main() {
 //    std::cout << "Rozmiar: " << size << std::endl;
 //
 //    return 0;
+
+    cout << "Choose a structure:" << endl;
+    cout << "1) LinkedList" << endl;
+    cout << "2) Heap" << endl;
+    int choice;
+    cin >> choice;
+    cout << "\n\n";
+
+    switch (choice) {
+        case 1: {
+            LinkedList();
+            break;
+        }
+        case 2: {
+            HeapStructure();
+            break;
+        }
+    }
+
+}
+
+
+void LinkedList() {
+    LinkedListPriorityQueue pq;
+    int choice, many;
+    Test test1;
+    cout << "How many element structure are you interested in?: ";
+    cin >> many;
+
+    do {
+        cout << "===================\n1) Add to LinkedList \n"
+             << "2) Remove from LinkedList \n"
+             << "3) Find in LinkedList \n"
+             << "4) Size of the LinkedList \n"
+             << "5) Change of a random element\n"
+             << "6) Change the size of the structure\n===================" << endl;
+        cin >> choice;
+        cout << "\n\n";
+
+        switch (choice) {
+            case 1: {
+                auto time = test1.linkedListInsert(pq, many);
+                cout << "The duration of adding: " << many << " elements was: " << time << endl;
+                break;
+            }
+
+            case 2: {
+                auto time = test1.linkedListExtractMax(pq, many);
+                cout << "The duration of removing: " << many << " elements was: " << time << endl;
+                break;
+            }
+            case 3: {
+                auto time = test1.linkedListFindMax(pq, many);
+                cout << "The duration of finding the highest priority in the structure : " << many << " elements was: "
+                     << time << endl;
+                break;
+            }
+
+            case 4: {
+                auto time = test1.linkedListReturnSize(pq, many);
+                cout << "The duration of returning the size of the structure : " << many << " elements was: " << time
+                     << endl;
+                break;
+            }
+
+            case 5: {
+                auto time = test1.linkedListModifyKey(pq, many);
+                cout << "The change of a random element and priority in structure: " << many << " took: " << time
+                     << endl;
+                break;
+            }
+
+            case 6: {
+                cout << "How many element structure are you interested in?: ";
+                cin >> many;
+                break;
+            }
+        }
+    } while (1);
+}
+
+void HeapStructure() {
+    PriorityQueue pq1;
+    int choice, many;
+    Test test1;
+    cout << "How many element structure are you interested in?: ";
+    cin >> many;
+    do {
+        cout << "===================\n1) Add to the heap \n"
+             << "2) Remove from the heap \n"
+             << "3) Find in the heap \n"
+             << "4) Size of the heap \n"
+             << "5) Clear the heap\n"
+             << "6) Change the size of the structure\n===================" << endl;
+        cin >> choice;
+        cout << "\n\n";
+
+        switch (choice) {
+            case 1: {
+                auto time = test1.heapInsert(pq1, many);
+                cout << "The duration of adding: " << many << " elements was: " << time << endl;
+                break;
+            }
+
+            case 2: {
+                auto time = test1.heapExtractMax(pq1, many);
+                cout << "The duration of removing: " << many << " elements was: " << time << endl;
+                break;
+            }
+
+            case 3: {
+                auto time = test1.heapFindMax(pq1, many);
+                cout << "The duration of finding the highest priority in the structure : " << many << " elements was: "
+                     << time << endl;
+                break;
+            }
+
+            case 4: {
+                auto time = test1.heapReturnSize(pq1, many);
+                cout << "The duration of returning the size of the structure: " << many << " elements was: " << time
+                     << endl;
+                break;
+            }
+
+            case 5: {
+                auto time = test1.heapModifyKey(pq1, many);
+                cout << "The change of a random element and priority in structure: " << many << " took: " << time
+                     << endl;
+                break;
+            }
+
+            case 6: {
+                cout << "How many element structure are you interested in?: ";
+                cin >> many;
+                break;
+            }
+
+        }
+    } while (1);
 }

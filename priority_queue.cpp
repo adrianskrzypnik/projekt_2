@@ -13,6 +13,7 @@ std::pair<int, int> PriorityQueue::extract_max() {
     heap.front() = heap.back();
     heap.pop_back();
     downheap(0);
+
     return max;
 }
 
