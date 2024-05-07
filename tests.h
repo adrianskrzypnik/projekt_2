@@ -487,7 +487,7 @@ public:
         std::cout<< "Wynik dla 60k " << res60k/64 <<std::endl;
     }
 
-    void allCasesheapExcractMax(PriorityQueue& list){
+    void allCasesHeapExcractMax(PriorityQueue& list){
         std::cout<<"heapExcractMax"<<std::endl;
 
         long long res10k = heapExtractMax(list, 10000);
@@ -510,7 +510,7 @@ public:
         std::cout<< "Wynik dla 60k " << res60k/64 <<std::endl;
     }
 
-    void allCasesheapFindMax(PriorityQueue& list){
+    void allCasesHeapFindMax(PriorityQueue& list){
         std::cout<<"heapFindMax"<<std::endl;
 
         long long res10k = heapFindMax(list, 10000);
@@ -533,7 +533,7 @@ public:
         std::cout<< "Wynik dla 60k " << res60k/64 <<std::endl;
     }
 
-    void allCasesheapModifyKey(PriorityQueue& list){
+    void allCasesHeapModifyKey(PriorityQueue& list){
         std::cout<<"heapModifyKey"<<std::endl;
 
         long long res10k = heapModifyKey(list, 10000);
@@ -556,7 +556,7 @@ public:
         std::cout<< "Wynik dla 60k " << res60k/64 <<std::endl;
     }
 
-    void allCasesheapReturnSize(PriorityQueue& list){
+    void allCasesHeapReturnSize(PriorityQueue& list){
         std::cout<<"heapReturnSize"<<std::endl;
 
         long long res10k = heapReturnSize(list, 10000);
