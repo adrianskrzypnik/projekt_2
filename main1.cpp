@@ -123,6 +123,26 @@ void HeapStructure() {
 
 
 int main() {
+    void LinkedList();
+    void HeapStructure();
 
+
+    cout << "Choose a structure:" << endl;
+    cout << "1) LinkedList" << endl;
+    cout << "2) Heap" << endl;
+    int choice;
+    cin >> choice;
+    cout << "\n\n";
+
+    switch (choice) {
+        case 1: {
+            LinkedList();
+            break;
+        }
+        case 2: {
+            HeapStructure();
+            break;
+        }
+    }
 
 }
