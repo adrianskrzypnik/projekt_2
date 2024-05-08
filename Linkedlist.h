@@ -33,6 +33,24 @@ public:
         }
     }
 
+
+    Node* findMax() {
+        if (head == nullptr) throw std::runtime_error("Queue is empty");
+
+        Node* temp = head;
+        Node* maxNode = temp;
+
+        while (temp != nullptr) {
+            if (temp->priority > maxNode->priority) {
+                maxNode = temp;
+            }
+            temp = temp->next;
+        }
+
+        return maxNode;
+    }
+
+
     int extractMax() {
         if (head == nullptr) throw std::runtime_error("Queue is empty");
 
@@ -43,24 +61,6 @@ public:
 
         return maxElement;
     }
-
-    //popraw aby zwracało caly element a nie tylko priotytet
-    int findMax() {
-        if (head == nullptr) throw std::runtime_error("Queue is empty");
-
-        Node* temp = head;
-        int maxPriority = temp->priority;
-        while (temp != nullptr) {
-            if (temp->priority > maxPriority) {
-                maxPriority = temp->priority;
-            }
-            temp = temp->next;
-        }
-
-        return maxPriority;
-    }
-
-
 
     int modifyKey(int e, int p) {
         Node* start = head;

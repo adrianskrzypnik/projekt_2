@@ -5,6 +5,9 @@
 #include <chrono>
 #include "Linkedlist.h"
 #include "priority_queue.h"
+#include <random>
+
+
 
 class Test
 {
@@ -22,9 +25,14 @@ public:
     //"Przyjąć, że zakres priorytetów
     //jest kilkukrotnie większy niż wielkość struktury. "
 
-    int32_t generateRandomPrio() {
-        return rand() % 100 + 1; // generuje losową liczbę w zakresie 1-100
+    int32_t generateRandomPrio(int seed) {
+        std::mt19937 rng;
+        rng.seed(seed);
+        std::uniform_int_distribution<std::mt19937::result_type> dist(1,120000); // zakres 1-120000
+
+        return dist(rng);
     }
+
 
 
     //LINKEDLIST
@@ -38,7 +46,7 @@ public:
 
                 for (int i = 0; i < numberOfElements; ++i) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
+                    int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
                     list.insert(randomNumber, randomPrio); // dodaj na początek listy
                 }
                 list.clear();
@@ -55,29 +63,29 @@ public:
     long long linkedListExtractMax(LinkedListPriorityQueue& list, int numberOfElements) {
         long long sum_duration = 0;//pomiary są sumowane
 
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 64; ++i) {
             Test test(i);
-            for (int j = 0; j < 8; ++j) {
-                //zapełnianie kolejki
-                for (int i = 0; i < numberOfElements; ++i) {
-                    int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
-                    list.insert(randomNumber, randomPrio); // dodaj na początek listy
-                }
 
-                auto start = std::chrono::high_resolution_clock::now();
-
-                list.extractMax();
-
-                auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::microseconds >(end - start);
-
-
-
-                sum_duration += duration.count();
-
-                list.clear();
+            //zapełnianie kolejki
+            for (int i = 0; i < numberOfElements; ++i) {
+                int randomNumber = generateRandomNumber();
+                int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
+                list.insert(randomNumber, randomPrio); // dodaj na początek listy
             }
+
+            auto start = std::chrono::high_resolution_clock::now();
+
+            list.extractMax();
+
+            auto end = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::nanoseconds >(end - start);
+
+
+
+            sum_duration += duration.count();
+
+            list.clear();
+
         }
         return sum_duration;
     }
@@ -92,19 +100,17 @@ public:
                 //zapełnianie kolejki
                 for (int i = 0; i < numberOfElements; ++i) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
+                    int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
                     list.insert(randomNumber, randomPrio); // dodaj na początek listy
                 }
 
                 auto start = std::chrono::high_resolution_clock::now();
 
-                int found_max = list.findMax();
+                list.findMax();
 
                 auto end = std::chrono::high_resolution_clock::now();
                 auto duration = std::chrono::duration_cast<std::chrono::microseconds >(end - start);
 
-
-                std::cout<<"found: "<<found_max <<std::endl;
 
                 sum_duration += duration.count();
 
@@ -128,7 +134,7 @@ public:
                 //zapełnianie tablicy
                 for (int i = 0; i < numberOfElements; ++i) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
+                    int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
                     list.insert(randomNumber, randomPrio); // dodaj na początek listy
                 }
 
@@ -136,7 +142,7 @@ public:
                 //wyszukiwanie losowej liczby, wykonywane do zalezienia
                 while (g < 1) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();
+                    int randomPrio = generateRandomPrio(i+50);
 
                     auto start = std::chrono::high_resolution_clock::now();
 
@@ -168,7 +174,7 @@ public:
                 //zapełnianie kolejki
                 for (int i = 0; i < numberOfElements; ++i) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
+                    int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
                     list.insert(randomNumber, randomPrio); // dodaj na początek listy
                 }
 
@@ -200,7 +206,7 @@ public:
 
                 for (int i = 0; i < numberOfElements; ++i) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
+                    int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
                     list.insert(randomNumber, randomPrio); // dodaj na początek listy
                 }
                 list.clear();
@@ -217,27 +223,27 @@ public:
     long long heapExtractMax(PriorityQueue& list, int numberOfElements) {
         long long sum_duration = 0;//pomiary są sumowane
 
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 64; ++i) {
             Test test(i);
-            for (int j = 0; j < 8; ++j) {
-                //zapełnianie kolejki
-                for (int i = 0; i < numberOfElements; ++i) {
-                    int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
-                    list.insert(randomNumber, randomPrio); // dodaj na początek listy
-                }
 
-                auto start = std::chrono::high_resolution_clock::now();
-
-                list.extract_max();
-
-                auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::microseconds >(end - start);
-
-                sum_duration += duration.count();
-
-                list.clear();
+            //zapełnianie kolejki
+            for (int i = 0; i < numberOfElements; ++i) {
+                int randomNumber = generateRandomNumber();
+                int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
+                list.insert(randomNumber, randomPrio); // dodaj na początek listy
             }
+
+            auto start = std::chrono::high_resolution_clock::now();
+
+            list.extract_max();
+
+            auto end = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::nanoseconds >(end - start);
+
+            sum_duration += duration.count();
+
+            list.clear();
+
         }
         return sum_duration;
     }
@@ -252,7 +258,7 @@ public:
                 //zapełnianie kolejki
                 for (int i = 0; i < numberOfElements; ++i) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
+                    int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
                     list.insert(randomNumber, randomPrio); // dodaj na początek listy
                 }
 
@@ -261,7 +267,7 @@ public:
                 list.find_max();
 
                 auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::microseconds >(end - start);
+                auto duration = std::chrono::duration_cast<std::chrono::nanoseconds >(end - start);
 
 
                 sum_duration += duration.count();
@@ -286,7 +292,7 @@ public:
                 //zapełnianie tablicy
                 for (int i = 0; i < numberOfElements; ++i) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
+                    int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
                     list.insert(randomNumber, randomPrio); // dodaj na początek listy
                 }
 
@@ -294,7 +300,7 @@ public:
                 //wyszukiwanie losowej liczby, wykonywane do zalezienia
                 while (g < 1) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();
+                    int randomPrio = generateRandomPrio(i+50);
 
                     auto start = std::chrono::high_resolution_clock::now();
 
@@ -326,7 +332,7 @@ public:
                 //zapełnianie kolejki
                 for (int i = 0; i < numberOfElements; ++i) {
                     int randomNumber = generateRandomNumber();
-                    int randomPrio = generateRandomPrio();//losowy priotytet w zakresie 1-100
+                    int randomPrio = generateRandomPrio(i+50);//losowy priotytet w zakresie 1-100
                     list.insert(randomNumber, randomPrio); // dodaj na początek listy
                 }
 
@@ -335,12 +341,13 @@ public:
                 int size = list.return_size();
 
                 auto end = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::microseconds >(end - start);
+                auto duration = std::chrono::duration_cast<std::chrono::nanoseconds >(end - start);
 
 
                 sum_duration += duration.count();
 
                 list.clear();
+
             }
         }
         return sum_duration;
@@ -577,6 +584,19 @@ public:
 
         long long res60k = heapReturnSize(list, 60000);
         std::cout<< "Wynik dla 60k " << res60k/64 <<std::endl;
+    }
+
+    void allCustomLinkedList(LinkedListPriorityQueue& list){
+
+        long long res20k = linkedListFindMax(list, 30000);
+        std::cout<< "findmax 30k " << res20k/64 <<std::endl;
+
+        long long res30k = linkedListReturnSize(list, 50000);
+        std::cout<< "returnsize 50kk " << res30k/64 <<std::endl;
+
+        long long res10k = linkedListInsert(list, 40000);
+        std::cout<< "insert 40k " << res10k/64 <<std::endl;
+
     }
 
 
